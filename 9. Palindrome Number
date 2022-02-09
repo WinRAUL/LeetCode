@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {  int i=0,arr[10],original_num=x;   long num=0;
+        if(x<0)   return false; //if numbers are -ve , straightly return falsse
+                              
+        do{
+            arr[i]=x%10;
+            x/=10;
+            i++;
+        }while(x);//to tokenise every number and make a array of it
+                              
+        for(int j=0; j<i; j++){
+            num+=arr[j]*pow(10,i-j-1);
+        }
+              
+    if(original_num==num){
+        return true;
+        }
+    else{
+        return false;
+    }
+}
+};
+/*
+Runtime: 8 ms, faster than 87.12% of C++ online submissions for Palindrome Number.
+Memory Usage: 6 MB, less than 12.38% of C++ online submissions for Palindrome Number.
+*/
