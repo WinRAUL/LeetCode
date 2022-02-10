@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        int m = haystack.length()   ,   n = needle.length();
+        
+        if(n==0)    return 0;   //if needle is empty
+        
+        for(int i=0; i<=m-n; i++){
+            if(haystack[i]==needle[0] && haystack[i+n-1]==needle[n-1]){     //comparing first and lasts element of same size string array startinng from i
+                for(int j=0;j<n;j++){
+                    if(haystack[i+j]!=needle[j])
+                        break;          //break and go to next index if any charachter in between does not match
+                    if(j==n-1)
+                        return i;       //if needle reaches its end therefore it is fully processed
+                }
+                    
+            }
+        }
+    return -1;
+    }
+};
+/*
+Runtime: 8 ms, faster than 85.27% of C++ online submissions for Implement strStr().
+Memory Usage: 7.1 MB, less than 66.31% of C++ online submissions for Implement strStr().
+*/
