@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool isValid(string str) {        
+        stack<char> s;
+        map<char,char> mp;
+        mp.insert({')','('});
+        mp.insert({']','['});
+        mp.insert({'}','{'});
+        
+        for(int i=0; i<str.length();i++){
+            if(str[i] == '(' || str[i] == '[' || str[i] == '{')
+                s.push(str[i]);
+            else{
+                if(s.empty())   return false;
+                
+                auto pr = mp.find(str[i]);
+                if(s.top()==pr->second)
+                    s.pop();
+                else    return false;
+            }
+        }
+    if(s.empty()==true)
+        return true;
+    else    
+        return false;
+    }
+};
+/*
+Runtime: 0 ms, faster than 100.00% of C++ online submissions for Valid Parentheses.
+Memory Usage: 6.4 MB, less than 9.95% of C++ online submissions for Valid Parentheses.
+*/
