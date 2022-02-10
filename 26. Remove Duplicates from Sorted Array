@@ -1,0 +1,39 @@
+class Solution {            //faster
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int indx=1;
+        int val=nums[0],n=nums.size();
+        for(int i=1;i<n;i++){
+            if(val!=nums[i]){
+                nums[indx]=nums[i]; 
+                val=nums[i];
+                indx++;    
+            }
+        }
+    return indx;
+    }
+};
+/*Runtime: 16 ms, faster than 54.72% of C++ online submissions for Remove Duplicates from Sorted Array.
+Memory Usage: 18.4 MB, less than 37.87% of C++ online submissions for Remove Duplicates from Sorted Array.*/
+
+/*
+class Solution {            //slower
+public:
+    int removeDuplicates(vector<int>& nums) {
+        if(nums.size()==0)   return 0;
+        int val=nums[0],n=nums.size();
+        for(int i=1;i<n;i++){
+            if(val==nums[i]){
+                nums.erase(nums.begin()+i);
+                i--;    
+                n--;
+            }
+            else{
+                val=nums[i];
+            }
+        }
+    return n;
+    }
+};
+476 ms,	18.4 MB
+*/
