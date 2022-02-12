@@ -1,0 +1,23 @@
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int n= digits.size(),i=0;
+        while(i<=n){
+            if(i==n){
+                digits.insert(digits.begin(),1);    //to make inputs like [9,9] to -> [1,0,0]
+                break;
+            }    
+            if(digits[n-1-i]==9){                   //make 9 to 0 and iterate to a number back by i++
+                digits[n-1-i] = 0;
+                i++;
+                continue;
+            }
+            digits[n-1-i]++;                        //if it is a regular number (!9) then add 1 and return ans
+            break;   
+        }
+        
+    return digits;
+    }
+};
+/*Runtime: 0 ms, faster than 100.00% of C++ online submissions for Plus One.
+Memory Usage: 8.8 MB, less than 62.61% of C++ online submissions for Plus One.*/
