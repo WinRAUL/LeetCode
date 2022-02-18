@@ -1,0 +1,34 @@
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode* tHead=head;
+        ListNode* tmp=head->next;
+        
+        for(int i=1;i<k;i++){   //for k=3, head is moving 2 times
+            if(head->next)  head=head->next;        //send head to K(th) element
+            else    return  tHead;                   //keep it default if head is not reachable
+        }
+        
+        if(head->next)
+            tHead->next=reverseKGroup(head->next,k);
+        else
+            tHead->next=NULL;
+        
+        for(int i=1;i<k;i++){         
+            if(tmp->next)
+            {
+                ListNode* t3=tmp->next;
+                tmp->next=tHead;
+                tHead=tmp;
+                tmp=t3;
+            }
+            else{
+                tmp->next=tHead;            //for case like [1,2]|2     or      [1,2,3,4]|2
+                return tmp;
+            }
+        }
+        return head;
+    }
+};
+/*Runtime: 15 ms, faster than 80.76% of C++ online submissions for Reverse Nodes in k-Group.
+Memory Usage: 11.4 MB, less than 72.84% of C++ online submissions for Reverse Nodes in k-Group.*/
