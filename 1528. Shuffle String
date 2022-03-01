@@ -1,0 +1,42 @@
+class Solution {                    //best approach
+public:
+    string restoreString(string s, vector<int>& indices) {
+        string ans=s;
+        for(int i=0;i<indices.size();i++)
+            ans[indices[i]]=s[i];
+        return ans;
+    }
+};
+/*Runtime: 4 ms, faster than 95.50% of C++ online submissions. Memory Usage: 15 MB, less than 99.57% of C++ online submissions for Shuffle String.*/
+
+/*
+class Solution {                    //my best
+public:
+    string restoreString(string s, vector<int>& indices) {
+        for(int i=0;i<indices.size()-1;i++)
+            for(int j=i;j<indices.size();j++)
+                if(indices[i]>indices[j]){
+                    swap(indices[i],indices[j]);
+                    swap(s[i],s[j]);
+                }
+        return s;
+    }
+};
+*/
+
+
+/*
+class Solution {
+public:
+    string restoreString(string s, vector<int>& indices) {
+        int l = s.length();
+        for(int i=0;i<l;i++){
+            auto x= find(indices.begin(),indices.end(),i);          //find index of 0,1,2...and swap both string and indices with indx 0,1,2...n-1
+            swap(s[i],s[x-indices.begin()]);
+            swap(indices[i],indices[x-indices.begin()]);
+        }
+    return s;
+    }
+};
+// Memory Usage: 15.2 MB, less than 78.51% of C++ online submissions for Shuffle String.
+*/
