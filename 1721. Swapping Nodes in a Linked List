@@ -1,0 +1,25 @@
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) {
+        ListNode* first = head;      //this ptr is k-1 nodes ahead from head
+        ListNode* second = head;     //this is trailing node ptr
+        
+        for(int i=1;i<k;i++)
+            first=first->next;       //to jump first ptr k-1 steps fwd
+        
+        int temp1 = first->val;      //store data of first kth node in a variable temp1
+        ListNode* ptr = first;       //also store its ptr to replace its value later
+        
+        while(first->next){       //move both ptrs till the first one reaches last node
+            first=first->next;
+            second=second->next;
+        }
+        int temp2 = second->val;    //store second ptr's value (K'th node from last)
+        ptr->val = temp2;           //now we have the value so replace first node's val
+        second->val=temp1;          //replace seeconds value with temp1
+
+    return head;
+    }
+};
+/*Runtime: 584 ms, faster than 94.47% of C++ online submissions for Swapping Nodes in a Linked List.
+Memory Usage: 180.2 MB, less than 57.49% of C++ online submissions for Swapping Nodes in a Linked List.*/
