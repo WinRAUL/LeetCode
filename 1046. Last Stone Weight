@@ -1,0 +1,21 @@
+class Solution {            //using sorting.......alternate is priority queue
+public:
+    int lastStoneWeight(vector<int>& stones) {
+        
+        while(stones.size()!=0 && stones.size()!=1){ //loop till 0 or 1 elements remain
+            sort(stones.begin(),stones.end(),greater<int>());       //sort descendingly
+            if(stones[0]==stones[1]){           
+                stones.erase(stones.begin());   //remove 1st element
+                stones[0]=0;                    //and set new first to 0  
+            }
+            else   
+                stones[1]=stones[0]-stones[1];  //else set new second to the diffrence 
+            
+            if(stones.size()>1)
+                stones.erase(stones.begin());
+        }
+    return stones[0];
+    }
+};
+/*Runtime: 0 ms, faster than 100.00% of C++ online submissions for Last Stone Weight.
+Memory Usage: 7.6 MB, less than 34.27% of C++ online submissions for Last Stone Weight.*/
