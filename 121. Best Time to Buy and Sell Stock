@@ -1,0 +1,31 @@
+class Solution {            //gourang ka sol
+public:
+    int maxProfit(vector<int>& prices) {
+        int n = prices.size();
+        int minn = prices[0];
+        int maxProf = 0;
+        
+        for(int i = 1 ; i < n ; i++ )
+        {
+            minn = min(minn,prices[i]);
+            int profit = prices[i]-minn;
+            maxProf = max(maxProf,profit);
+          
+        }
+        return maxProf;
+    }
+};
+
+/*
+class Solution {            //brute force...TLE
+public:
+    int maxProfit(vector<int>& prices) {
+        int max = 0;
+        for(int i=0; i<prices.size()-1;i++)
+            for(int j=i+1; j<prices.size();j++)
+                if(prices[j]>prices[i] && prices[j]-prices[i]>max)
+                    max = prices[j]-prices[i];
+    return max;
+    }
+};
+*/
