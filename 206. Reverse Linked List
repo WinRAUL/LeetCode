@@ -1,0 +1,47 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {        //using stack
+public:
+    bool isPalindrome(ListNode* head) {
+        if(head==NULL || head->next == NULL)  return true;
+        
+        ListNode* fast = head;
+        stack<int> s;
+        
+        while(fast->next && fast->next->next){  //while both nodes exist
+            s.push(head->val); 
+            head=head->next;
+            fast=fast->next->next;
+        }
+        if(fast->next){         //for even input
+            s.push(head->val);
+        }
+        while(!s.empty()){              //while stack is not empty
+            if(head->next && s.top()==head->next->val){
+                s.pop();
+                head=head->next;
+            }
+            else
+                return false;
+        }
+        return true;
+    }
+};
+/*Runtime: 575 ms, faster than 10.51% of C++ online submissions for Palindrome Linked List.
+Memory Usage: 120.8 MB, less than 42.18% of C++ online submissions for Palindrome Linked List.*/
+
+/*
+Approaches
+1> put elements in an array then use two pointers to verify
+2> count element size put first half in a stack ,pop() if upcoming elemets are same
+    more optimized approach >> use two pointer to reach half >>> space O(N)
+3> reverse the linkedList from the half to the end, then compare from half with the start of list >> space O(1)
+*/
