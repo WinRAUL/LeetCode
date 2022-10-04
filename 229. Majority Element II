@@ -1,0 +1,18 @@
+class Solution {
+public:
+    vector<int> majorityElement(vector<int>& nums) {
+        map<int,int> m;
+        vector<int> ans;
+        int limit = nums.size()/3;
+        for(int num : nums){
+            ++m[num];
+        }
+        for(pair x : m){
+            if(x.second > limit)
+                ans.push_back(x.first);
+        }
+        return ans;
+    }
+};
+// Runtime: 24 ms, faster than 51.06% of C++ online submissions for Majority Element II.
+// Memory Usage: 16.1 MB, less than 22.35% of C++ online submissions for Majority Element II.
