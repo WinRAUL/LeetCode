@@ -1,4 +1,4 @@
-class Solution {
+class Solution {    //map
 public:
     vector<int> majorityElement(vector<int>& nums) {
         map<int,int> m;
@@ -14,5 +14,5 @@ public:
         return ans;
     }
 };
-// Runtime: 24 ms, faster than 51.06% of C++ online submissions for Majority Element II.
+// Runtime: 17 ms, faster than 78.27% of C++ online submissions for Majority Element II.
 // Memory Usage: 16.1 MB, less than 22.35% of C++ online submissions for Majority Element II.
