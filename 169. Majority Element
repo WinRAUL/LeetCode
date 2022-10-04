@@ -1,0 +1,41 @@
+// class Solution {    //map
+// public:
+//     int majorityElement(vector<int>& nums) {
+//         map<int,int> m;
+//         int ans, lim = nums.size()/2;
+//         for(int num : nums)
+//             ++m[num];
+//         for(pair x : m){
+//             if(x.second > lim){
+//                 ans = x.first;
+//                 break;
+//             }
+//         }
+//         return ans;
+//     }
+// };
+// Runtime: 60 ms, faster than 5.73% of C++ online submissions for Majority Element.
+// Memory Usage: 19.6 MB, less than 59.67% of C++ online submissions for Majority Element.
+
+
+class Solution {    //by sorting first, then counting
+public:
+    int majorityElement(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        int n = nums.size();
+        int prev=nums[0];
+        int count=0;
+        for(int num : nums){
+            if(num==prev)
+                ++count;
+            else{
+                if(count > n/2) return prev;
+                else count = 1; //clear count then add 1 bcz of current element count
+            }
+            prev = num;
+        }
+        return prev;
+    }
+};
+// Runtime: 35 ms, faster than 51.78% of C++ online submissions for Majority Element.
+// Memory Usage: 19.5 MB, less than 92.00% of C++ online submissions for Majority Element.
