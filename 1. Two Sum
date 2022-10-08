@@ -1,20 +1,54 @@
-//bruteforce
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        int n = nums.size();
-        for(int i = 0 ; i < n-1 ; i++)
-
-            for(int j = i +1 ; j < n ; j++ )
-
-                if(nums[i] + nums[j] == target)
-                    return {i , j};
-
-            return {};
-
+//         int n = nums.size();
+//         for(int i = 0 ; i < n-1 ; i++)       //bruteforce
+//             for(int j = i +1 ; j < n ; j++ )
+//                 if(nums[i] + nums[j] == target)
+//                     return {i , j};
+//             return {};
+        
+////////////////////////////////////
+        
+        map<int,int> m;     //second approach (slower then third approach)
+        vector<int> ans;
+        for(int i=0;i<nums.size();i++)
+        {
+            if(m.find(target-nums[i]) != m.end()){
+                ans = {i, m[target-nums[i]]};
+                return ans;
+            }
+            m[nums[i]] = i;
+        }
+        return ans;   
+/*Runtime: 26 ms, faster than 60.72% of C++ online submissions for Two Sum.
+Memory Usage: 11.2 MB, less than 21.04% of C++ online submissions for Two Sum.*/
+        
+////////////////////////////////////
+        
+    //     vector<pair<int,int>> v;        //sanchi approach
+    //     for(int i=0;i<nums.size();i++)
+    //     {
+    //         v.push_back({nums[i],i});
+    //     }
+    //     vector<int> res;
+    //     sort(v.begin(),v.end());
+    //     auto itr1=v.begin();
+    //     auto itr2=v.end()-1;
+    //     while(itr1!=itr2){
+    //         if((itr1->first+itr2->first)==target)
+    //         {
+    //             res.push_back(itr1->second);
+    //             res.push_back(itr2->second);
+    //             break;
+    //         }
+    //         if((itr1->first+itr2->first)<target)
+    //             itr1++;
+    //         else 
+    //             itr2--;
+    //     }
+    //     return res;
+/*Runtime: 6 ms, faster than 99.12% of C++ online submissions for Two Sum.
+Memory Usage: 11.1 MB, less than 23.14% of C++ online submissions for Two Sum.*/
     }
 };
-/*
-Runtime: 409 ms, faster than 28.20% of C++ online submissions for Two Sum.
-Memory Usage: 10.3 MB, less than 66.65% of C++ online submissions for Two Sum.
-*/
