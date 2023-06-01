@@ -1,0 +1,26 @@
+class Solution {            //beats 92.90 %
+public:
+    string removeTrailingZeros(string num) {
+        int i = num.length()-1;
+        while(num[i]=='0'){
+            i--;
+        }
+        num.erase(i+1);    //erase uses 1 based indexing 
+        return num;
+    }
+};
+
+// class Solution {       //slower method (beats 11.8%)
+// public:
+//     string removeTrailingZeros(string num) {
+//         int len = num.length();
+//         int i = len-1;
+//         int count = 0;
+//         while(num[i]=='0'){
+//             i--;
+//             count++;
+//         }
+//         string ans = num.substr(0,len-count);
+//         return ans;
+//     }
+// };
